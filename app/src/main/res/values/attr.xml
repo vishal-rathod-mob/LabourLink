@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="large_button_height">56dp</dimen>
+    <dimen name="medium_button_height">40dp</dimen>
+    <dimen name="small_button_height">32dp</dimen>
+
+    <dimen name="large_button_corner_radius">10dp</dimen>
+    <dimen name="medium_button_corner_radius">6dp</dimen>
+    <dimen name="small_button_corner_radius">4dp</dimen>
+
+    <dimen name="large_button_icon_end_margin">8dp</dimen>
+    <dimen name="medium_button_icon_end_margin">4dp</dimen>
+    <dimen name="small_button_icon_end_margin">4dp</dimen>
+
+    <dimen name="large_button_padding">16dp</dimen>
+    <dimen name="medium_button_padding">8dp</dimen>
+    <dimen name="small_button_padding">4dp</dimen>
+    <dimen name="large_button_with_text_horizontal_padding">20dp</dimen>
+    <dimen name="medium_button_with_text_horizontal_padding">12dp</dimen>
+    <dimen name="small_button_with_text_horizontal_padding">6dp</dimen>
+
+    <dimen name="button_elevation_max">8dp</dimen>
+</resources>
