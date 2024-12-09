@@ -3,4 +3,10 @@
     <string name="title_jobs">Jobs</string>
     <string name="my_jobs">My Jobs</string>
     <string name="profile">Profile</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_edit_profile">Edit Profile</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="edit">Edit</string>
 </resources>
