@@ -3,7 +3,10 @@ package com.procore.hackathon.labourlink.ui.login
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,8 +14,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -33,7 +39,6 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.procore.hackathon.labourlink.MainActivity
@@ -46,8 +51,8 @@ fun LoginScreen(
     onSignUpClicked: () -> Unit,
     viewModel: LoginViewModel
 ) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("test@example.com") }
+    var password by remember { mutableStateOf("password123") }
     val loginResult by viewModel.loginResult.observeAsState()
     val context = LocalContext.current // Obtain the context in a composable-safe way
 
@@ -71,7 +76,7 @@ fun LoginScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                painter = painterResource(id = R.drawable.ic_procore),
                 contentDescription = "Labour Link",
                 modifier = Modifier.size(100.dp)
             )
@@ -79,7 +84,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "Login",
+                text = "Labour Link",
                 style = MaterialTheme.typography.titleLarge,
                 fontSize = 24.sp
             )
@@ -111,9 +116,9 @@ fun LoginScreen(
 
             Button(
                 onClick = { onLoginClicked(email, password) },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             ) {
-                Text("Login")
+                Text(text = "Login")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -126,9 +131,3 @@ fun LoginScreen(
         }
     }
 }
-
-@Composable
-fun Button(onClick: () -> Unit, modifier: Modifier, content: @Composable () -> Unit) {
-
-}
-
