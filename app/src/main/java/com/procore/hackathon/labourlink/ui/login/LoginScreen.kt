@@ -19,6 +19,8 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -56,78 +58,78 @@ fun LoginScreen(
     val loginResult by viewModel.loginResult.observeAsState()
     val context = LocalContext.current // Obtain the context in a composable-safe way
 
-    LaunchedEffect(loginResult) {
-        loginResult?.let { success ->
-            if (success) {
-                val intent = Intent(context, MainActivity::class.java)
-                context.startActivity(intent)
-            } else {
-                Toast.makeText(context, "Invalid Credentials", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
     Surface(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_procore),
-                contentDescription = "Labour Link",
-                modifier = Modifier.size(100.dp)
-            )
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Text(
-                text = "Labour Link",
-                style = MaterialTheme.typography.titleLarge,
-                fontSize = 24.sp
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                label = { Text("Email") },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            OutlinedTextField(
-                value = password,
-                onValueChange = { password = it },
-                label = { Text("Password") },
-                singleLine = true,
-                visualTransformation = if (password.isNotEmpty()) PasswordVisualTransformation() else VisualTransformation.None,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(
-                onClick = { onLoginClicked(email, password) },
-                modifier = Modifier.fillMaxWidth(),
+            Card(
+                shape = RoundedCornerShape(16.dp), // Increased corner radius for better visual appeal
+                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp), // Correct usage of CardElevation
+                modifier = Modifier.padding(16.dp).fillMaxWidth(0.8f)
             ) {
-                Text(text = "Login")
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_procore),
+                        contentDescription = "Labour Link",
+                        modifier = Modifier.size(100.dp)
+                    )
+                    Spacer(modifier = Modifier.height(24.dp))
+                    Text(
+                        text = "Labour Link",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontSize = 24.sp
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    OutlinedTextField(
+                        value = email,
+                        onValueChange = { email = it },
+                        label = { Text("Email") },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    OutlinedTextField(
+                        value = password,
+                        onValueChange = { password = it },
+                        label = { Text("Password") },
+                        singleLine = true,
+                        visualTransformation = if (password.isNotEmpty()) PasswordVisualTransformation() else VisualTransformation.None,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Button(
+                        onClick = {
+                            if (email.isNotEmpty() && password.isNotEmpty()) {
+                                onLoginClicked(email, password)
+                                context.startActivity(Intent(context, MainActivity::class.java))
+                            }
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                    ) {
+                        Text(text = "Login", color = Color.White)
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
+                    ClickableText(
+                        text = AnnotatedString("Don't have an account? Sign Up"),
+                        onClick = { onSignUpClicked() },
+                        style = MaterialTheme.typography.bodyLarge.copy(color = Color.Blue)
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    ClickableText(
+                        text = AnnotatedString("Forgot Password?"),
+                        onClick = { onSignUpClicked() },
+                        style = MaterialTheme.typography.bodyLarge.copy(color = Color.Blue)
+                    )
+                }
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            ClickableText(
-                text = AnnotatedString("Don't have an account? Sign Up"),
-                onClick = { onSignUpClicked() },
-                style = MaterialTheme.typography.bodyLarge.copy(color = Color.Blue)
-            )
         }
     }
 }
