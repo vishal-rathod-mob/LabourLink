@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.procore.hackathon.labourlink.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.procore.hackathon.labourlink.ui.jobs.JobsFragment"
+        android:label="@string/title_jobs"
+        tools:layout="@layout/fragment_jobs" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.procore.hackathon.labourlink.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.procore.hackathon.labourlink.ui.myjobs.MyJobsFragment"
+        android:label="@string/my_jobs"
+        tools:layout="@layout/fragment_my_jobs" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.procore.hackathon.labourlink.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.procore.hackathon.labourlink.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

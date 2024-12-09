@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.procore.hackathon.labourlink.R
 import com.procore.hackathon.labourlink.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -22,17 +24,26 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        init()
+
         return root
+    }
+
+    private fun init(){
+        val navHostFragment = childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        // Set up the Bottom Navigation
+        val bottomNavigationView: BottomNavigationView = binding.navView
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+
+//        navController.addOnDestinationChangedListener { _, destination, _ ->
+//
+//        }
     }
 
     override fun onDestroyView() {
