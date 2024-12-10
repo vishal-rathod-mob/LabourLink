@@ -1,13 +1,14 @@
 package com.procore.hackathon.labourlink.ui.profile.editfragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.procore.hackathon.labourlink.MultiSpinner
-import com.procore.hackathon.labourlink.R
 import com.procore.hackathon.labourlink.databinding.FragmentEditTradesBinding
 import com.procore.hackathon.labourlink.ui.profile.ProfileViewModel
 
@@ -39,40 +40,50 @@ class EditTradesDialog : BottomSheetDialogFragment() {
             "Roofing",
             "Pipe Fitting"
         )
-        val selectedList = notificationsViewModel.specialization.value?.toMutableList()
+        val selectedList = notificationsViewModel.specialization.value?.keys?.toMutableList()
         _binding?.apply {
-            specializationList.text = getString(
-                R.string.specializations_chosen,
-                selectedList?.joinToString(",\n \u0020")
-            )
-
+            val adapter = notificationsViewModel.specialization.value?.let {
+                ExperienceAdapter(it, true)
+            }
+            rvExperiences.adapter = adapter
+            rvExperiences.layoutManager = LinearLayoutManager(this@EditTradesDialog.context)
             multiSpinner.setItems(
                 specializationlIST,
                 "Select specializations",
                 object : MultiSpinner.MultiSpinnerListener {
+                    @SuppressLint("NotifyDataSetChanged")
                     override fun onItemsSelected(selected: BooleanArray?) {
-                        selectedList?.clear()
                         selected?.forEachIndexed { index, b ->
-                            if (b) {
-                                selectedList?.add(specializationlIST[index])
+                            if (b && selectedList?.contains(specializationlIST[index]) == false) {
+                                selectedList.add(specializationlIST[index])
+                            } else if (!b) {
+                                selectedList?.remove(specializationlIST[index])
                             }
                         }
-                        specializationList.text = getString(
-                            R.string.specializations_chosen,
-                            selectedList?.joinToString(",\n \u0020")
+                        notificationsViewModel.updateTrades(
+                            selectedList!!.toList()
                         )
                     }
                 },
                 selectedList!!.toList()
             )
-        }
-        _binding?.apply {
             updateProfileBtn.setOnClickListener {
-                notificationsViewModel.updateTrades(
-                    selectedList!!.toList()
+                val experienceslist = mutableListOf<Int>()
+                selectedList.indices.forEach {
+                    val a  = rvExperiences.findViewHolderForAdapterPosition(it) as ExperienceAdapter.ViewHolder
+                    experienceslist.add(a.binding.textFieldName.editText?.text.toString().toInt())
+                }
+                notificationsViewModel.updateTradeExperiences(
+                   experienceslist.toList()
                 )
                 dismiss()
             }
+
+            notificationsViewModel.specialization.observe(viewLifecycleOwner, {
+                notificationsViewModel.specialization.value?.let { adapter?.updateList(it) }
+                rvExperiences.adapter = adapter
+                rvExperiences.adapter?.notifyDataSetChanged()
+            })
         }
     }
 

@@ -34,7 +34,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
@@ -53,16 +55,19 @@ fun LoginScreen(
     onSignUpClicked: () -> Unit,
     viewModel: LoginViewModel
 ) {
-    var email by remember { mutableStateOf("test@example.com") }
+    var email by remember { mutableStateOf("james.mathew@example.com") }
     var password by remember { mutableStateOf("password123") }
     val loginResult by viewModel.loginResult.observeAsState()
     val context = LocalContext.current // Obtain the context in a composable-safe way
 
     Surface(modifier = Modifier.fillMaxSize()) {
         Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
+                    modifier = Modifier.fillMaxSize(),
+                                     //  .paint(painterResource(id = R.drawable.ic_labourlink),
+                                     //   contentScale = ContentScale.Fit),
+                    contentAlignment = Alignment.Center
+        )
+        {
             Card(
                 shape = RoundedCornerShape(16.dp), // Increased corner radius for better visual appeal
                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp), // Correct usage of CardElevation
@@ -74,17 +79,10 @@ fun LoginScreen(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ic_procore),
+                        painter = painterResource(id = R.drawable.ic_labourlink),
                         contentDescription = "Labour Link",
-                        modifier = Modifier.size(100.dp)
+                        modifier = Modifier.size(300.dp)
                     )
-                    Spacer(modifier = Modifier.height(24.dp))
-                    Text(
-                        text = "Labour Link",
-                        style = MaterialTheme.typography.titleLarge,
-                        fontSize = 24.sp
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
                     OutlinedTextField(
                         value = email,
                         onValueChange = { email = it },
@@ -120,13 +118,13 @@ fun LoginScreen(
                     ClickableText(
                         text = AnnotatedString("Don't have an account? Sign Up"),
                         onClick = { onSignUpClicked() },
-                        style = MaterialTheme.typography.bodyLarge.copy(color = Color.Blue)
+                        style = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.primary)
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     ClickableText(
                         text = AnnotatedString("Forgot Password?"),
                         onClick = { onSignUpClicked() },
-                        style = MaterialTheme.typography.bodyLarge.copy(color = Color.Blue)
+                        style = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.primary)
                     )
                 }
             }
