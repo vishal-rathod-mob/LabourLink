@@ -9,4 +9,15 @@
     <string name="title_edit_profile">Edit Profile</string>
     <string name="basic_information">Basic Information</string>
     <string name="edit">Edit</string>
+    <string name="years_months">%1$s years %2$s months</string>
+    <string name="specializations_chosen">\u0020 Specializations Chosen : \n\n \u0020%1$s</string>
+    <string name="update">Update</string>
+    <string name="edit_basic_info">Edit Basic Info</string>
+    <string name="edit_specializations">Edit Specializations</string>
+    <string name="edit_experience_details">Edit Experience Details</string>
+    <string name="months">months</string>
+    <string name="edit_hourly_rate">Edit Hourly Rate</string>
+    <string name="hourly_rate">Hourly rate</string>
+    <string name="specializations">Specializations</string>
+    <string name="experience">Experience</string>
 </resources>

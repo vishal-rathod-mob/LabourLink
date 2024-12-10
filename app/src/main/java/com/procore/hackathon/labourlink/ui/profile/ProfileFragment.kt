@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.procore.hackathon.labourlink.R
 import com.procore.hackathon.labourlink.databinding.FragmentNotificationsBinding
+import com.procore.hackathon.labourlink.ui.profile.editfragments.EditBasicInfoDialog
+import com.procore.hackathon.labourlink.ui.profile.editfragments.EditExperienceDialog
+import com.procore.hackathon.labourlink.ui.profile.editfragments.EditHourlyRateDialog
+import com.procore.hackathon.labourlink.ui.profile.editfragments.EditTradesDialog
 
 class ProfileFragment : Fragment() {
 
@@ -18,7 +21,7 @@ class ProfileFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val notificationsViewModel: NotificationsViewModel by activityViewModels()
+    private val notificationsViewModel: ProfileViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,26 +36,54 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            textName.text = notificationsViewModel.name.value
+            layoutProfilePhoto.textName.text = notificationsViewModel.name.value
             textRate.text = notificationsViewModel.rate.value
             layoutBasicInfo.textEmail.text = notificationsViewModel.email.value
             layoutBasicInfo.textPhone.text = notificationsViewModel.phone.value
+            layoutBasicInfo.textAddress.text = notificationsViewModel.address.value
 
-            textEdit.setOnClickListener {
-                findNavController().navigate(R.id.to_edit_profile)
+            layoutBasicInfo.btnEdit.setOnClickListener {
+                val dialogFragment = EditBasicInfoDialog()
+                dialogFragment.show(parentFragmentManager, dialogFragment.tag)
+            }
+            editBtn.setOnClickListener {
+                val dialogFragment = EditHourlyRateDialog()
+                dialogFragment.show(parentFragmentManager, dialogFragment.tag)
+            }
+
+            layoutExperience.btnEdit.setOnClickListener {
+                val dialogFragment = EditExperienceDialog()
+                dialogFragment.show(parentFragmentManager, dialogFragment.tag)
+            }
+
+            layoutTrades.btnEdit.setOnClickListener {
+                val dialogFragment = EditTradesDialog()
+                dialogFragment.show(parentFragmentManager, dialogFragment.tag)
             }
             notificationsViewModel.name.observe(viewLifecycleOwner, {
-                textName.text = notificationsViewModel.name.value
+                layoutProfilePhoto.textName.text = it
             })
             notificationsViewModel.rate.observe(viewLifecycleOwner, {
-                textRate.text = notificationsViewModel.rate.value
+                textRate.text = it
             })
             notificationsViewModel.email.observe(viewLifecycleOwner, {
-                layoutBasicInfo.textEmail.text = notificationsViewModel.email.value
+                layoutBasicInfo.textEmail.text = it
             })
             notificationsViewModel.phone.observe(viewLifecycleOwner, {
-                layoutBasicInfo.textPhone.text = notificationsViewModel.phone.value
+                layoutBasicInfo.textPhone.text = it
             })
+            notificationsViewModel.address.observe(viewLifecycleOwner, {
+                layoutBasicInfo.textAddress.text = it
+            })
+            notificationsViewModel.experience.observe(viewLifecycleOwner, {
+                val experience = it.split(",")
+                layoutExperience.textExperience.text =
+                    getString(R.string.years_months, experience[0], experience[1])
+            })
+            notificationsViewModel.specialization.observe(viewLifecycleOwner) {
+                layoutTrades.textPlumbing.text =
+                        it?.joinToString(",\n\n")
+            }
         }
 
     }
