@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LabourLink</string>
-    <string name="title_jobs">Jobs</string>
-    <string name="my_jobs">My Jobs</string>
+    <string name="title_jobs">Find Jobs</string>
+    <string name="my_jobs">My Activity</string>
     <string name="profile">Profile</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -10,7 +10,7 @@
     <string name="basic_information">Basic Information</string>
     <string name="edit">Edit</string>
     <string name="years_months">%1$s years %2$s months</string>
-    <string name="specializations_chosen">\u0020 Specializations Chosen : \n\n \u0020%1$s</string>
+    <string name="specializations_chosen">\u0020 Specializations Chosen : \n \u0020%1$s</string>
     <string name="update">Update</string>
     <string name="edit_basic_info">Edit Basic Info</string>
     <string name="edit_specializations">Edit Specializations</string>

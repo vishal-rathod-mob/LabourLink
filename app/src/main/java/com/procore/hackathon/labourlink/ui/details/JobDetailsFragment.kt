@@ -1,14 +1,20 @@
 package com.procore.hackathon.labourlink.ui.details
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
+import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.procore.hackathon.labourlink.databinding.FragmentJobsDetailsBinding
+import com.procore.hackathon.labourlink.ui.jobs.placeholder.PlaceholderContent
 
+@Suppress("DEPRECATION")
 class JobDetailsFragment : Fragment() {
 
     private var _binding: FragmentJobsDetailsBinding? = null
@@ -33,7 +39,25 @@ class JobDetailsFragment : Fragment() {
     }
 
     private fun init(){
+        val item = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable("item", PlaceholderContent.PlaceholderItem::class.java)
+        }
+        else{
+            arguments?.getParcelable("item")!!
+        }
 
+        with(item!!){
+            with(binding){
+                tvJobTitle.text = jobTitle
+                tvCompany.text = company
+                tvDuration.text = duration
+                tvJobType.text = type
+                tvLocation.text = location
+                tvDescription.text = description
+                tvResponsibilities.text = responsibilities.replace("\\n", System.lineSeparator())
+                tvRequirements.text = requirements.replace("\\n", System.lineSeparator())
+            }
+        }
     }
 
     private fun setListeners(){

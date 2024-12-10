@@ -27,7 +27,7 @@
         <com.google.android.material.textview.MaterialTextView
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/tv_company_name"
+            android:id="@+id/tv_type"
             android:layout_width="wrap_content"
             android:fontFamily="@font/sans_serif_medium"
             android:layout_marginTop="6dp"
@@ -37,7 +37,21 @@
             android:layout_height="wrap_content" />
 
         <com.google.android.material.textview.MaterialTextView
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/sans_serif_regular"
+            android:layout_marginTop="6dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="We are seeking an experienced plumber to join our team. You will be responsible for installing and repairing pipes, fixtures, and other plumbing systems in residential and commercial buildings."
+            android:textSize="11sp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.textview.MaterialTextView
+            app:layout_constraintTop_toBottomOf="@+id/tv_description"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/tv_location"
             android:fontFamily="@font/sans_serif_medium"

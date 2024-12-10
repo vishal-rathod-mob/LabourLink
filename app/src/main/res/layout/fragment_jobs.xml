@@ -14,7 +14,7 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_marginStart="16dp"
         android:gravity="center"
-        android:text="Jobs"
+        android:text="Find Jobs"
         android:textAppearance="?attr/textAppearanceListItem"
         android:textSize="24sp"
         android:textStyle="bold"

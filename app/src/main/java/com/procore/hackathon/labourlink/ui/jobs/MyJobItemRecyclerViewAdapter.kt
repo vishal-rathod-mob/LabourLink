@@ -31,15 +31,22 @@ class MyJobItemRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-
+        holder.bind(item)
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(binding: FragmentJobListBinding) :
+    inner class ViewHolder(val binding: FragmentJobListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-
+        fun bind(item: PlaceholderItem) {
+            with(binding){
+                tvTitle.text = item.jobTitle
+                tvType.text = item.type
+                tvDescription.text = item.description
+                tvLocation.text = item.location
+                tvTime.text = item.time
+            }
+        }
     }
-
 }

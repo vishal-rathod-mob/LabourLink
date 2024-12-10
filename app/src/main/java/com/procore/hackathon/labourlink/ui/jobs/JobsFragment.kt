@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -39,7 +40,8 @@ class JobsFragment : Fragment() {
         with(binding.list) {
             layoutManager = LinearLayoutManager(context)
             adapter = MyJobItemRecyclerViewAdapter(PlaceholderContent.ITEMS){
-                activity?.findNavController(R.id.nav_host_fragment_activity_main)!!.navigate(R.id.navigation_job_details)
+                val bundle = bundleOf("item" to it)
+                activity?.findNavController(R.id.nav_host_fragment_activity_main)!!.navigate(R.id.navigation_job_details, bundle)
             }
         }
     }
