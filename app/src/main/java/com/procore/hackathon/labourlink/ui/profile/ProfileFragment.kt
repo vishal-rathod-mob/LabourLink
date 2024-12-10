@@ -1,17 +1,20 @@
 package com.procore.hackathon.labourlink.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.procore.hackathon.labourlink.R
 import com.procore.hackathon.labourlink.databinding.FragmentNotificationsBinding
 import com.procore.hackathon.labourlink.ui.profile.editfragments.EditBasicInfoDialog
 import com.procore.hackathon.labourlink.ui.profile.editfragments.EditExperienceDialog
 import com.procore.hackathon.labourlink.ui.profile.editfragments.EditHourlyRateDialog
 import com.procore.hackathon.labourlink.ui.profile.editfragments.EditTradesDialog
+import com.procore.hackathon.labourlink.ui.profile.editfragments.ExperienceAdapter
 
 class ProfileFragment : Fragment() {
 
@@ -41,6 +44,11 @@ class ProfileFragment : Fragment() {
             layoutBasicInfo.textEmail.text = notificationsViewModel.email.value
             layoutBasicInfo.textPhone.text = notificationsViewModel.phone.value
             layoutBasicInfo.textAddress.text = notificationsViewModel.address.value
+
+            layoutTrades.rvExperiences.adapter = notificationsViewModel.specialization.value?.let {
+                ExperienceAdapter(it, false)
+            }
+            layoutTrades.rvExperiences.layoutManager = LinearLayoutManager(this@ProfileFragment.context)
 
             layoutBasicInfo.btnEdit.setOnClickListener {
                 val dialogFragment = EditBasicInfoDialog()
@@ -81,11 +89,13 @@ class ProfileFragment : Fragment() {
                     getString(R.string.years_months, experience[0], experience[1])
             })
             notificationsViewModel.specialization.observe(viewLifecycleOwner) {
-                layoutTrades.textPlumbing.text =
-                        it?.joinToString(",\n\n")
+                (layoutTrades.rvExperiences.adapter as ExperienceAdapter?)?.updateList(it)
+                layoutTrades.rvExperiences.adapter?.notifyDataSetChanged()
+            }
+            signOut.setOnClickListener {
+                activity?.finish()
             }
         }
-
     }
 
     override fun onDestroyView() {

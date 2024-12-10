@@ -36,12 +36,12 @@ class ProfileViewModel : ViewModel() {
     }
     val experience: LiveData<String> = _experience
 
-    private val _specialization = MutableLiveData<List<String>>().apply {
-        value = mutableListOf("Plumbing","Electricals")
+    private val _specialization = MutableLiveData<Map<String, Int>>().apply {
+        value = mutableMapOf(Pair("Plumbing", 0), Pair("Electricals", 0))
     }
-    val specialization: LiveData<List<String>> = _specialization
+    val specialization: LiveData<Map<String, Int>> = _specialization
 
-    fun updateRate( rate: String) {
+    fun updateRate(rate: String) {
         _rate.value = rate
     }
 
@@ -49,18 +49,36 @@ class ProfileViewModel : ViewModel() {
         _experience.value = experience
     }
 
-    fun updateBasicInfo(name: String, email: String, phone: String, address: String){
+    fun updateBasicInfo(name: String, email: String, phone: String, address: String) {
         _name.value = name
         _email.value = email
         _phone.value = phone
         _address.value = address
     }
 
-    fun updateTrades(trades: List<String>){
-        val a = _specialization.value?.toMutableList()
-        a?.apply {
-            clear()
-            addAll(trades)
+    fun updateTrades(trades: List<String>) {
+        val a = _specialization.value?.toMutableMap()
+        trades.forEach { trade ->
+            if (trade !in a?.keys!!) {
+                a[trade] = 0
+            }
+        }
+        val l = mutableListOf<String>()
+        a?.keys?.forEach { it ->
+            if (!trades.contains(it)) {
+                l.add(it)
+            }
+        }
+        l.forEach {
+            a?.remove(it)
+        }
+        _specialization.value = a
+    }
+
+    fun updateTradeExperiences(list: List<Int>) {
+        val a = _specialization.value?.toMutableMap()
+        a?.keys?.forEachIndexed { index, i ->
+            a[i] = list[index]
         }
         _specialization.value = a
     }
