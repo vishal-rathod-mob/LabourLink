@@ -34,7 +34,6 @@ class ProfileViewModel : ViewModel() {
     private val _experience = MutableLiveData<String>().apply {
         value = "6,3"
     }
-    val experience: LiveData<String> = _experience
 
     private val _specialization = MutableLiveData<Map<String, Int>>().apply {
         value = mutableMapOf(Pair("Plumbing", 0), Pair("Electricals", 0))

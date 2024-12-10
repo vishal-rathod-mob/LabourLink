@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.procore.hackathon.labourlink.R
 import com.procore.hackathon.labourlink.databinding.FragmentNotificationsBinding
 import com.procore.hackathon.labourlink.ui.profile.editfragments.EditBasicInfoDialog
-import com.procore.hackathon.labourlink.ui.profile.editfragments.EditExperienceDialog
 import com.procore.hackathon.labourlink.ui.profile.editfragments.EditHourlyRateDialog
 import com.procore.hackathon.labourlink.ui.profile.editfragments.EditTradesDialog
 import com.procore.hackathon.labourlink.ui.profile.editfragments.ExperienceAdapter
@@ -58,12 +57,6 @@ class ProfileFragment : Fragment() {
                 val dialogFragment = EditHourlyRateDialog()
                 dialogFragment.show(parentFragmentManager, dialogFragment.tag)
             }
-
-            layoutExperience.btnEdit.setOnClickListener {
-                val dialogFragment = EditExperienceDialog()
-                dialogFragment.show(parentFragmentManager, dialogFragment.tag)
-            }
-
             layoutTrades.btnEdit.setOnClickListener {
                 val dialogFragment = EditTradesDialog()
                 dialogFragment.show(parentFragmentManager, dialogFragment.tag)
@@ -82,11 +75,6 @@ class ProfileFragment : Fragment() {
             })
             notificationsViewModel.address.observe(viewLifecycleOwner, {
                 layoutBasicInfo.textAddress.text = it
-            })
-            notificationsViewModel.experience.observe(viewLifecycleOwner, {
-                val experience = it.split(",")
-                layoutExperience.textExperience.text =
-                    getString(R.string.years_months, experience[0], experience[1])
             })
             notificationsViewModel.specialization.observe(viewLifecycleOwner) {
                 (layoutTrades.rvExperiences.adapter as ExperienceAdapter?)?.updateList(it)

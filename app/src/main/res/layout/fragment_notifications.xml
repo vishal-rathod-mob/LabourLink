@@ -89,16 +89,12 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <include
-                android:id="@+id/layout_experience"
-                layout="@layout/card_profile_experience" />
-
             <TextView
                 android:id="@+id/sign_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Sign Out"
+                android:text="@string/sign_out"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
