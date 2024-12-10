@@ -10,11 +10,11 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="?attr/actionBarSize"
-        android:layout_marginStart="16dp"
         android:gravity="center"
         android:layout_gravity="center_horizontal"
         android:text="Filter By"
-        android:textAppearance="?attr/textAppearanceListItem"
+        android:fontFamily="@font/sans_serif_medium"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"/>
 
@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="What?"
-        android:textAppearance="?attr/textAppearanceListItem"
+        android:fontFamily="@font/sans_serif_medium"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"/>
 
@@ -39,7 +40,8 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Where"
-        android:textAppearance="?attr/textAppearanceListItem"
+        android:fontFamily="@font/sans_serif_medium"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"/>
 
@@ -49,7 +51,8 @@
         android:layout_marginTop="3dp"
         android:gravity="center"
         android:text="Distance from your location"
-        android:textAppearance="?attr/textAppearanceListItem"
+        android:fontFamily="@font/sans_serif_medium"
+        android:textColor="@color/black"
         android:textSize="16sp"/>
 
     <androidx.appcompat.widget.AppCompatSeekBar
@@ -71,13 +74,12 @@
         android:textSize="16sp"/>
 
     <com.google.android.material.button.MaterialButton
+        style="@style/MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Filter"
         android:textAllCaps="false"
-        android:backgroundTint="@color/hsl_gray_10"
         android:layout_marginTop="80dp"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

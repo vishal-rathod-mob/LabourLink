@@ -3,31 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/hsl_gray_90"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginStart="16dp"
         android:gravity="center"
         android:text="Jobs"
         android:textAppearance="?attr/textAppearanceListItem"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/iv_filters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        style="@style/Theme.Procore.Button.Secondary.Medium.IconOnly"
         app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
-        app:srcCompat="@drawable/ic_filter" />
+        app:icon="@drawable/ic_filter" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"

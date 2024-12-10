@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.procore.hackathon.labourlink.databinding.FragmentJobsDetailsBinding
 
 class JobDetailsFragment : Fragment() {
@@ -26,12 +27,19 @@ class JobDetailsFragment : Fragment() {
         val root: View = binding.root
 
         init()
+        setListeners()
 
         return root
     }
 
     private fun init(){
 
+    }
+
+    private fun setListeners(){
+        binding.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {

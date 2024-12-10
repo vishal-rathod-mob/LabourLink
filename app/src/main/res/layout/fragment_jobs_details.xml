@@ -7,6 +7,15 @@
     android:paddingHorizontal="16dp"
     tools:context=".ui.myjobs.MyJobsFragment">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:srcCompat="@drawable/ic_back" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
@@ -33,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title">
@@ -46,106 +55,135 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_serif_medium"
                 android:text="Electrician"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="20sp" />
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/sans_serif_medium"
                 android:text="ABC limited"
-                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/sans_serif_medium"
                 android:text="Job duration - 5 months"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="14sp" />
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
+                android:fontFamily="@font/sans_serif_medium"
                 android:text="Job type - Fulltime"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="14sp" />
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
+                android:fontFamily="@font/sans_serif_medium"
                 android:text="Location - Bangalore"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="14sp" />
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/sans_serif_medium"
                 android:text="Job Description"
-                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#E4E7E8" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/sans_serif_regular"
                 android:gravity="start|end"
                 android:justificationMode="inter_word"
+                android:lineSpacingExtra="-4dp"
                 android:text="We are seeking a skilled and reliable Electrician to join our team and help provide top-notch electrical services to our residential and commercial clients. As an electrician, you will be responsible for installing, maintaining, and repairing electrical systems and wiring in homes, businesses, and other facilities. If you are passionate about delivering excellent service and ensuring the safety of electrical systems, we want to hear from you!"
-                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/sans_serif_medium"
                 android:text="Key Responsibilities"
-                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#E4E7E8" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:gravity="start|end"
-                android:justificationMode="inter_word"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/sans_serif_regular"
+                android:lineSpacingExtra="-4dp"
                 android:text="- Install, maintain, and repair electrical systems and components, including wiring, circuits, outlets, and lighting fixtures.\n\n- Inspect and test electrical systems to ensure functionality and compliance with safety codes.\n\n- Diagnose electrical issues and provide efficient solutions.\n\n- Perform routine maintenance and troubleshooting on electrical equipment.\n\n- Respond to emergency service calls as needed."
-                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/sans_serif_medium"
                 android:text="Requirements"
-                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#E4E7E8" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:gravity="start|end"
-                android:justificationMode="inter_word"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/sans_serif_regular"
+                android:lineSpacingExtra="-4dp"
                 android:text="- Proven experience as an electrician (residential, commercial, or industrial).\n\n- Valid electrician's license (where applicable).\n\n- In-depth knowledge of electrical systems, codes, and safety practices.\n\n- Strong problem-solving skills and attention to detail."
-                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn"
+        style="@style/MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Apply"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
