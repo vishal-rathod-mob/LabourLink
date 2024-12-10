@@ -7,6 +7,7 @@ import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -46,6 +47,12 @@ class JobDetailsFragment : Fragment() {
             arguments?.getParcelable("item")!!
         }
 
+        val from = arguments?.getInt("from")
+
+        if(from == 1){
+            binding.btn.text = "Cancel Application"
+        }
+
         with(item!!){
             with(binding){
                 tvJobTitle.text = jobTitle
@@ -62,6 +69,16 @@ class JobDetailsFragment : Fragment() {
 
     private fun setListeners(){
         binding.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.btn.setOnClickListener {
+            if(arguments?.getInt("from") == 0){
+                Toast.makeText(context, "Application Sent", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(context, "Application Cancelled", Toast.LENGTH_SHORT).show()
+            }
             findNavController().popBackStack()
         }
     }

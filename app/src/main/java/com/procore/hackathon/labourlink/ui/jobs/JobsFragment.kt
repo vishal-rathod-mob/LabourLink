@@ -40,7 +40,7 @@ class JobsFragment : Fragment() {
         with(binding.list) {
             layoutManager = LinearLayoutManager(context)
             adapter = MyJobItemRecyclerViewAdapter(PlaceholderContent.ITEMS){
-                val bundle = bundleOf("item" to it)
+                val bundle = bundleOf("item" to it, "from" to 0)
                 activity?.findNavController(R.id.nav_host_fragment_activity_main)!!.navigate(R.id.navigation_job_details, bundle)
             }
         }

@@ -1,5 +1,6 @@
 package com.procore.hackathon.labourlink.ui.login
 
+import android.app.Activity
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -107,6 +108,7 @@ fun LoginScreen(
                             if (email.isNotEmpty() && password.isNotEmpty()) {
                                 onLoginClicked(email, password)
                                 context.startActivity(Intent(context, MainActivity::class.java))
+                                (context as Activity).finish()
                             }
                         },
                         modifier = Modifier.fillMaxWidth(),
